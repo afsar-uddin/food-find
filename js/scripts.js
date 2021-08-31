@@ -8,8 +8,7 @@ const searchFood = async () => {
         noResultFound();
     } else {
         // load data
-        // const url = `https:www.themealdb.com/api/json/v1/1/search.php?s=${searchValue}`
-        const url = `HTTPS:www.themealdb.com/api/json/v1/1/search.php?s=${searchValue}`
+        const url = `https:www.themealdb.com/api/json/v1/1/search.php?s=${searchValue}`
 
         try {
             const res = await fetch(url);
