@@ -1,3 +1,4 @@
+// fetch data
 const searchFood = async () => {
     const searchField = document.getElementById('search-field');
     const searchValue = searchField.value;
@@ -19,20 +20,18 @@ const searchFood = async () => {
     }
 }
 
+// display search results
 const displaySearchResults = meals => {
     const searchResult = document.getElementById('search-results');
-
+    // old displayed data clear
     searchResult.textContent = '';
-
-
+    // error message
     if (meals == null) {
         noResultFound()
     }
     meals.forEach(meal => {
-
         const div = document.createElement('div')
         div.classList.add('single-item')
-
         div.innerHTML = `
             <div onclick="loadMealDetail(${meal.idMeal})">
                 <img src="${meal.strMealThumb}" />
@@ -44,7 +43,7 @@ const displaySearchResults = meals => {
         searchResult.appendChild(div);
     })
 }
-
+// Data load
 const loadMealDetail = async mealID => {
     document.getElementById('remove').style.display = 'block'
     const url = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealID}`
@@ -58,14 +57,13 @@ const loadMealDetail = async mealID => {
     }
 }
 
+// display detail
 const displayMealDetail = meal => {
     const searchdetail = document.getElementById('search-detail');
     searchdetail.classList.add('popup');
     searchdetail.style.display = 'block';
-    document.body.classList.add('hidden')
+    document.body.classList.add('hidden');
 
-
-    // searchdetail.textContent = '';
     const div = document.createElement('div');
     div.classList.add('single-item-detail');
     div.innerHTML = `
@@ -75,18 +73,16 @@ const displayMealDetail = meal => {
     `;
     searchdetail.appendChild(div);
 }
-
+// error message show
 const noResultFound = () => {
     const searchResult = document.getElementById('search-results');
-    // const searchDetail = document.getElementById('search-detail');
     searchResult.textContent = '';
-    // searchDetail.textContent = '';
     const h2 = document.createElement('h2');
-    h2.classList.add('error')
+    h2.classList.add('error');
     h2.innerText = 'No result found, Please search again...';
-    searchResult.appendChild(h2)
+    searchResult.appendChild(h2);
 }
-
+// detail data remove 
 document.getElementById('remove').addEventListener('click', function () {
     const searchPopUp = document.getElementById('search-detail');
     searchPopUp.style.display = 'none';
